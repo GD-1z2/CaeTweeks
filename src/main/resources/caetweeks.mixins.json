@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "fr.caemur.caetweeks.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "ItemFrameMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
