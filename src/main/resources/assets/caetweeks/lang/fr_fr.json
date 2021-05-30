@@ -1,4 +1,14 @@
 {
   "category.caetweeks.core": "CaeTweeks",
-  "key.caetweeks.itemframehelper": "Assistant item frame"
+  "key.caetweeks.configmenu": "Menu de configuration",
+  "key.caetweeks.itemframehelper": "Assistant item frame",
+  "key.caetweeks.clearwater": "Eau limpide",
+  "key.caetweeks.clearlava": "Lave limpide",
+
+  "config.caetweeks.clearwater.name": "Eau limpide",
+  "config.caetweeks.clearwater.description": "Rend l'eau complètement transparente",
+  "config.caetweeks.clearlava.name": "Lave limpide",
+  "config.caetweeks.clearlava.description": "Rend la lave complètement transparente",
+  "config.caetweeks.itemframehelper.name": "Assistant item frame",
+  "config.caetweeks.itemframehelper.description": "Affiche le nombre de clics nécessaire pour réinitialiser la rotation d'une item frame"
 }

@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "ItemFrameMixin"
+    "ItemFrameMixin",
+    "BackgroundRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
