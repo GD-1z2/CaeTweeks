@@ -6,9 +6,12 @@
   "key.caetweeks.clearlava": "Lave limpide",
 
   "config.caetweeks.clearwater.name": "Eau limpide",
-  "config.caetweeks.clearwater.description": "Rend l'eau complètement transparente",
+  "config.caetweeks.clearwater.description": "Rend l'eau complètement transparente|§aTouche : %s",
   "config.caetweeks.clearlava.name": "Lave limpide",
-  "config.caetweeks.clearlava.description": "Rend la lave complètement transparente",
+  "config.caetweeks.clearlava.description": "Rend la lave complètement transparente|§aTouche : %s",
   "config.caetweeks.itemframehelper.name": "Assistant item frame",
-  "config.caetweeks.itemframehelper.description": "Affiche le nombre de clics nécessaire pour réinitialiser la rotation d'une item frame"
+  "config.caetweeks.itemframehelper.description": "Affiche le nombre de clics nécessaire pour|réinitialiser la rotation d'une item frame|§aTouche : %s",
+
+  "button.caetweeks.changekeys": "Changer les touches",
+  "button.caetweeks.reset": "Réinitialiser"
 }

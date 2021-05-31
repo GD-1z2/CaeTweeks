@@ -3,8 +3,6 @@ package fr.caemur.caetweeks.config;
 public class ModConfig {
     private boolean itemFrameHelperEnabled, clearWaterEnabled, clearLavaEnabled;
 
-    public static ModConfig DEFAULT = new ModConfig(false, false, false);
-
     public ModConfig(boolean itemFrameHelperEnabled, boolean clearWaterEnabled, boolean clearLavaEnabled) {
         this.itemFrameHelperEnabled = itemFrameHelperEnabled;
         this.clearWaterEnabled = clearWaterEnabled;
@@ -61,5 +59,16 @@ public class ModConfig {
 
     public void toggleClearLava() {
         clearLavaEnabled = !clearLavaEnabled;
+    }
+
+    @Override
+    public String toString() {
+        return "clearWater=" + clearWaterEnabled +
+                ";clearLava=" + clearLavaEnabled +
+                ";itemFrameHelper=" + itemFrameHelperEnabled;
+    }
+
+    public static ModConfig getDefault() {
+        return new ModConfig(false, false, false);
     }
 }

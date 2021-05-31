@@ -8,9 +8,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.gui.screen.ConfirmChatLinkScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.options.ControlsOptionsScreen;
-import net.minecraft.client.gui.screen.options.OptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.options.GameOptions;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -46,26 +44,26 @@ public class ConfigScreen extends Screen {
                 (int) margin, startY, optionWidth, optionHeight,
                 new TranslatableText("config.caetweeks.clearwater.name"),
                 new TranslatableText("config.caetweeks.clearwater.description",
-                        KeyBindingHelper.getBoundKeyOf(KeyManager.getKeyBinding("clearwater")).getLocalizedText()).getString().split("\\|"),
-                "clearWater", client, ModConfig.DEFAULT.isClearWaterEnabled()
+                        KeyBindingHelper.getBoundKeyOf(KeyManager.getKeyBinding("clearwater")).getLocalizedText()).getString(),
+                "clearWater", client, ModConfig.getDefault().isClearWaterEnabled()
         ));
         configOptions.add(new ToggleConfigOption(
                 secColumnX, startY, optionWidth, optionHeight,
                 new TranslatableText("config.caetweeks.clearlava.name"),
                 new TranslatableText("config.caetweeks.clearlava.description",
-                        KeyBindingHelper.getBoundKeyOf(KeyManager.getKeyBinding("clearlava")).getLocalizedText()).getString().split("\\|"),
-                "clearLava", client, ModConfig.DEFAULT.isClearLavaEnabled()
+                        KeyBindingHelper.getBoundKeyOf(KeyManager.getKeyBinding("clearlava")).getLocalizedText()).getString(),
+                "clearLava", client, ModConfig.getDefault().isClearLavaEnabled()
         ));
         configOptions.add(new ToggleConfigOption(
                 (int) margin, startY + (2 * optionHeight), optionWidth, optionHeight,
                 new TranslatableText("config.caetweeks.itemframehelper.name"),
                 new TranslatableText("config.caetweeks.itemframehelper.description",
-                        KeyBindingHelper.getBoundKeyOf(KeyManager.getKeyBinding("itemframehelper")).getLocalizedText()).getString().split("\\|"),
-                "itemFrameHelper", client, ModConfig.DEFAULT.isItemFrameHelperEnabled()
+                        KeyBindingHelper.getBoundKeyOf(KeyManager.getKeyBinding("itemframehelper")).getLocalizedText()).getString(),
+                "itemFrameHelper", client, ModConfig.getDefault().isItemFrameHelperEnabled()
         ));
 
         // buttons
-        ButtonWidget githubButton = new ButtonWidget((int) margin, (int) (height - margin - 20), 80, 20, Text.of("Github"), button -> {
+        ButtonWidget githubButton = new ButtonWidget((int) margin, (int) (height - margin - 20), 70, 20, Text.of("Github"), button -> {
             this.client.openScreen(new ConfirmChatLinkScreen((bl) -> {
                 if (bl) {
                     Util.getOperatingSystem().open(Constants.GITHUB);
@@ -74,11 +72,11 @@ public class ConfigScreen extends Screen {
             }, Constants.GITHUB, true));
         });
 
-        ButtonWidget keysButton = new ButtonWidget((int) margin + 90, (int) (height - margin - 20), 120, 20, new TranslatableText("button.caetweeks.changekeys"), button -> {
+        ButtonWidget keysButton = new ButtonWidget((int) margin + 80, (int) (height - margin - 20), 140, 20, new TranslatableText("button.caetweeks.changekeys"), button -> {
             client.openScreen(new ControlsOptionsScreen(this, client.options));
         });
 
-        ButtonWidget resetButton = new ButtonWidget((int) margin + 220, (int) (height - margin - 20), 140, 20, new TranslatableText("button.caetweeks.reset"), button -> {
+        ButtonWidget resetButton = new ButtonWidget((int) margin + 230, (int) (height - margin - 20), 100, 20, new TranslatableText("button.caetweeks.reset"), button -> {
             for (ConfigOption configOption : configOptions) {
                 configOption.reset();
             }
@@ -114,14 +112,14 @@ public class ConfigScreen extends Screen {
         textRenderer.draw(matrices, title, titleX, titleY, 16777215);
         matrices.pop();
 
-        String[] tooltip = null;
+        String tooltip = null;
         for (ConfigOption configOption : configOptions) {
             configOption.render(matrices, mouseX, mouseY, delta);
 
             if (configOption.isHovered()) tooltip = configOption.description;
         }
 
-        if (tooltip != null) renderTooltip(matrices, TextUtils.stringsToTexts(tooltip), mouseX, mouseY);
+        if (tooltip != null) renderTooltip(matrices, TextUtils.stringToTexts(tooltip), mouseX, mouseY);
     }
 
     @Override

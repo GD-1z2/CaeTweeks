@@ -10,7 +10,7 @@
   "config.caetweeks.clearlava.name": "Clear lava",
   "config.caetweeks.clearlava.description": "Removes lava overlay|§aKey : %s",
   "config.caetweeks.itemframehelper.name": "Item frame helper",
-  "config.caetweeks.itemframehelper.description": "Show number of clicks required to reset an item frame's rotation|§aKey : %s",
+  "config.caetweeks.itemframehelper.description": "Show number of clicks required|to reset an item frame's rotation|§aKey : %s",
 
   "button.caetweeks.changekeys": "Change keys",
   "button.caetweeks.reset": "Reset"

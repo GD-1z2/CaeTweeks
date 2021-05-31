@@ -33,6 +33,7 @@ public abstract class ItemFrameMixin extends EntityRenderer<Entity> {
 
     /**
      * @author Caemur
+     * Change position of the label and allow custom texts
      */
     @Overwrite
     public void renderLabelIfPresent(ItemFrameEntity itemFrameEntity, Text text, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {

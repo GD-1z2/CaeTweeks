@@ -6,9 +6,9 @@ import net.minecraft.text.Text;
 
 public class ConfigOption extends AbstractPressableButtonWidget {
     protected Text title;
-    protected String[] description;
+    protected String description;
 
-    public ConfigOption(int x, int y, int width, int height, Text title, String[] description) {
+    public ConfigOption(int x, int y, int width, int height, Text title, String description) {
         super(x, y, width, height, title);
         this.title = title;
         this.description = description;
@@ -26,5 +26,6 @@ public class ConfigOption extends AbstractPressableButtonWidget {
     public void tick() {
     }
 
-    public void reset() {}
+    public void reset() {
+    }
 }

@@ -1,6 +1,7 @@
 package fr.caemur.caetweeks.gui;
 
 import fr.caemur.caetweeks.CaeTweeks;
+import fr.caemur.caetweeks.config.ConfigFile;
 import fr.caemur.caetweeks.utils.Constants;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
@@ -16,7 +17,7 @@ public class ToggleConfigOption extends ConfigOption {
     private int animationDirection = 0, animationTicks = 0;
     private long lastUpdate = 0, currentTime = 0;
 
-    public ToggleConfigOption(int x, int y, int width, int height, Text title, String[] description, String configField, MinecraftClient client, boolean defaultValue) {
+    public ToggleConfigOption(int x, int y, int width, int height, Text title, String description, String configField, MinecraftClient client, boolean defaultValue) {
         super(x, y, width, height, title, description);
         this.configField = configField;
         this.client = client;
@@ -38,8 +39,7 @@ public class ToggleConfigOption extends ConfigOption {
         // 2 = to right, 1 = to left
         animationDirection = value ? 2 : 1;
 
-        System.out.println("value = " + value);
-        System.out.println("defaultValue = " + defaultValue);
+        ConfigFile.save(CaeTweeks.getConfig());
     }
 
     @Override

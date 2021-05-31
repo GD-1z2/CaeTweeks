@@ -50,8 +50,6 @@ public class BackgroundRendererMixin {
                     fogDensity = s * (1 - animationTicks / 20f);
 
                     currentTime = System.currentTimeMillis();
-
-                    System.out.println("fogDensity = " + fogDensity);
                 }
 
                 RenderSystem.fogDensity(fogDensity);
@@ -62,8 +60,6 @@ public class BackgroundRendererMixin {
                     fogEnd = animationTicks * (viewDistance / 20f + 1);
 
                     currentTime = System.currentTimeMillis();
-
-                    System.out.println("fogEnd = " + fogEnd);
                 }
 
                 RenderSystem.fogStart(0.0f);
