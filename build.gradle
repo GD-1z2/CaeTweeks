@@ -6,9 +6,9 @@ plugins {
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-archivesBaseName = project.archives_base_name
-version = project.mod_version
-group = project.maven_group
+archivesBaseName = "caetweeks"
+version = "2.0"
+group = "fr.caemur.caetweeks"
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
