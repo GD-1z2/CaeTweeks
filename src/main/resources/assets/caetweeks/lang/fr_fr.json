@@ -4,6 +4,7 @@
   "key.caetweeks.itemframehelper": "Assistant item frame",
   "key.caetweeks.clearwater": "Eau limpide",
   "key.caetweeks.clearlava": "Lave limpide",
+  "key.caetweeks.antibreak": "AntiBreak",
 
   "config.caetweeks.clearwater.name": "Eau limpide",
   "config.caetweeks.clearwater.description": "Rend l'eau complètement transparente|§aTouche : %s",
@@ -11,7 +12,11 @@
   "config.caetweeks.clearlava.description": "Rend la lave complètement transparente|§aTouche : %s",
   "config.caetweeks.itemframehelper.name": "Assistant item frame",
   "config.caetweeks.itemframehelper.description": "Affiche le nombre de clics nécessaire pour|réinitialiser la rotation d'une item frame|§aTouche : %s",
+  "config.caetweeks.antibreak.name": "AntiBreak",
+  "config.caetweeks.antibreak.description": "Empêche les outils en diamant/netherite|et les outils en fer enchantés de se|casser||§cAttention : ne fonctionne pas sur les|§cépées, et ne fonctionne pas si l'outil|§cest utilisé pour frapper une entité||§aTouche : %s",
 
   "button.caetweeks.changekeys": "Changer les touches",
-  "button.caetweeks.reset": "Réinitialiser"
+  "button.caetweeks.reset": "Réinitialiser",
+
+  "message.caetweeks.brokentool": "§cCet item a %d§c de durabilité"
 }

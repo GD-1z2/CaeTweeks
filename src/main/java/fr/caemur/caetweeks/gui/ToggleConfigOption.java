@@ -11,11 +11,14 @@ import net.minecraft.util.Identifier;
 public class ToggleConfigOption extends ConfigOption {
     private static final Identifier SWITCH_TEXTURE = new Identifier(Constants.MOD_ID, "textures/gui/switch.png");
 
-    private final String configField;
     private final MinecraftClient client;
-    private boolean value, defaultValue;
+
+    private final String configField;
+    private boolean value;
+    private final boolean defaultValue;
+
     private int animationDirection = 0, animationTicks = 0;
-    private long lastUpdate = 0, currentTime = 0;
+    private long animationStart;
 
     public ToggleConfigOption(int x, int y, int width, int height, Text title, String description, String configField, MinecraftClient client, boolean defaultValue) {
         super(x, y, width, height, title, description);
@@ -39,6 +42,8 @@ public class ToggleConfigOption extends ConfigOption {
         // 2 = to right, 1 = to left
         animationDirection = value ? 2 : 1;
 
+        animationStart = System.currentTimeMillis();
+
         ConfigFile.save(CaeTweeks.getConfig());
     }
 
@@ -52,7 +57,7 @@ public class ToggleConfigOption extends ConfigOption {
 
         renderSwitch(matrices, mouseX, mouseY);
 
-        client.textRenderer.draw(matrices, title, x + 36 + client.textRenderer.fontHeight / 2f, y + client.textRenderer.fontHeight / 2f, 16777215);
+        client.textRenderer.draw(matrices, title, x + 36 + client.textRenderer.fontHeight / 2, y + client.textRenderer.fontHeight / 2, 16777215);
     }
 
     private void renderSwitch(MatrixStack matrices, int mouseX, int mouseY) {
@@ -71,19 +76,16 @@ public class ToggleConfigOption extends ConfigOption {
             pos = 19;
         }
 
-        if (animationDirection != 0) currentTime = System.currentTimeMillis();
-
         drawTexture(matrices, x + pos, y + 1, u, 0, 16, 16);
 
-        if (currentTime > lastUpdate + 8) {
-            animationTicks++;
-            if (animationTicks == 8) {
+        if (animationDirection != 0) {
+            animationTicks = (int) ((System.currentTimeMillis() - animationStart) / 12.5f);
+
+            if (animationTicks >= 8) {
                 animationDirection = 0;
                 animationTicks = 0;
                 playDownSound(MinecraftClient.getInstance().getSoundManager());
             }
-
-            lastUpdate = System.currentTimeMillis();
         }
     }
 

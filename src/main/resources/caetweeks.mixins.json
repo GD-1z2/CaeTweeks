@@ -6,8 +6,9 @@
   "mixins": [
   ],
   "client": [
+    "BackgroundRendererMixin",
     "ItemFrameMixin",
-    "BackgroundRendererMixin"
+    "PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

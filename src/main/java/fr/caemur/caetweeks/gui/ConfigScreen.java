@@ -1,8 +1,8 @@
 package fr.caemur.caetweeks.gui;
 
-import fr.caemur.caetweeks.KeyManager;
 import fr.caemur.caetweeks.config.ModConfig;
 import fr.caemur.caetweeks.utils.Constants;
+import fr.caemur.caetweeks.utils.KeyManager;
 import fr.caemur.caetweeks.utils.TextUtils;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.gui.screen.ConfirmChatLinkScreen;
@@ -18,8 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigScreen extends Screen {
-    private float titleX, titleY, margin;
-    private int startY, optionWidth, optionHeight, secColumnX;
+    private int titleX, titleY, startY, optionWidth, optionHeight, secColumnX, marginX, marginY;
     private final List<ConfigOption> configOptions;
 
     public ConfigScreen(Text title) {
@@ -30,18 +29,19 @@ public class ConfigScreen extends Screen {
     @Override
     protected void init() {
         super.init();
-        titleX = (width - (textRenderer.getWidth(title) * 2)) / 4f;
-        titleY = height / 20f;
-        margin = width / 10f;
-        startY = (int) (titleY + (textRenderer.fontHeight * 2) + margin);
-        optionWidth = (int) ((width - 3 * margin) / 2f);
+        titleX = (int) ((width - (textRenderer.getWidth(title) * 2)) / 4f);
+        titleY = (int) (height / 20f);
+        marginX = (int) (width / 10f);
+        marginY = (int) (height / 10f);
+        startY = (int) (titleY + (textRenderer.fontHeight * 2) + marginX);
+        optionWidth = (int) ((width - 3 * marginX) / 2f);
         optionHeight = textRenderer.fontHeight * 2;
-        secColumnX = (int) (2 * margin + optionWidth);
+        secColumnX = (int) (2 * marginX + optionWidth);
 
         configOptions.clear();
 
         configOptions.add(new ToggleConfigOption(
-                (int) margin, startY, optionWidth, optionHeight,
+                marginX, startY, optionWidth, optionHeight,
                 new TranslatableText("config.caetweeks.clearwater.name"),
                 new TranslatableText("config.caetweeks.clearwater.description",
                         KeyBindingHelper.getBoundKeyOf(KeyManager.getKeyBinding("clearwater")).getLocalizedText()).getString(),
@@ -55,15 +55,31 @@ public class ConfigScreen extends Screen {
                 "clearLava", client, ModConfig.getDefault().isClearLavaEnabled()
         ));
         configOptions.add(new ToggleConfigOption(
-                (int) margin, startY + (2 * optionHeight), optionWidth, optionHeight,
+                marginX, startY + (2 * optionHeight), optionWidth, optionHeight,
                 new TranslatableText("config.caetweeks.itemframehelper.name"),
                 new TranslatableText("config.caetweeks.itemframehelper.description",
                         KeyBindingHelper.getBoundKeyOf(KeyManager.getKeyBinding("itemframehelper")).getLocalizedText()).getString(),
                 "itemFrameHelper", client, ModConfig.getDefault().isItemFrameHelperEnabled()
         ));
+        configOptions.add(new ToggleConfigOption(
+                secColumnX, startY + (2 * optionHeight), optionWidth, optionHeight,
+                new TranslatableText("config.caetweeks.antibreak.name"),
+                new TranslatableText("config.caetweeks.antibreak.description",
+                        KeyBindingHelper.getBoundKeyOf(KeyManager.getKeyBinding("antibreak")).getLocalizedText()).getString(),
+                "antiBreak", client, ModConfig.getDefault().isAntiBreakEnabled()
+        ));
+
+
+        final int githubButtonWidth = textRenderer.getWidth("GitHub") + 24,
+                keysButtonWidth = textRenderer.getWidth(new TranslatableText("button.caetweeks.changekeys")) + 24,
+                resetButtonWidth = textRenderer.getWidth(new TranslatableText("button.caetweeks.reset")) + 24,
+                startX = (width - (githubButtonWidth + keysButtonWidth + resetButtonWidth + 20)) / 2,
+                buttonY = height - marginY - 20;
 
         // buttons
-        ButtonWidget githubButton = new ButtonWidget((int) margin, (int) (height - margin - 20), 70, 20, Text.of("Github"), button -> {
+        ButtonWidget githubButton = new ButtonWidget(startX, buttonY,
+                githubButtonWidth, 20, Text.of("Github"), button -> {
+
             this.client.openScreen(new ConfirmChatLinkScreen((bl) -> {
                 if (bl) {
                     Util.getOperatingSystem().open(Constants.GITHUB);
@@ -72,11 +88,15 @@ public class ConfigScreen extends Screen {
             }, Constants.GITHUB, true));
         });
 
-        ButtonWidget keysButton = new ButtonWidget((int) margin + 80, (int) (height - margin - 20), 140, 20, new TranslatableText("button.caetweeks.changekeys"), button -> {
+        ButtonWidget keysButton = new ButtonWidget(startX + githubButtonWidth + 10, buttonY,
+                keysButtonWidth, 20, new TranslatableText("button.caetweeks.changekeys"), button -> {
+
             client.openScreen(new ControlsOptionsScreen(this, client.options));
         });
 
-        ButtonWidget resetButton = new ButtonWidget((int) margin + 230, (int) (height - margin - 20), 100, 20, new TranslatableText("button.caetweeks.reset"), button -> {
+        ButtonWidget resetButton = new ButtonWidget(startX + githubButtonWidth + keysButtonWidth + 20, buttonY,
+                resetButtonWidth, 20, new TranslatableText("button.caetweeks.reset"), button -> {
+
             for (ConfigOption configOption : configOptions) {
                 configOption.reset();
             }

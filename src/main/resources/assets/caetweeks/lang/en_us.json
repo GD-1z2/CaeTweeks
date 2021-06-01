@@ -4,6 +4,7 @@
   "key.caetweeks.itemframehelper": "Item frame helper",
   "key.caetweeks.clearwater": "Clear water",
   "key.caetweeks.clearlava": "Clear lava",
+  "key.caetweeks.antibreak": "AntiBreak",
 
   "config.caetweeks.clearwater.name": "Clear water",
   "config.caetweeks.clearwater.description": "Removes water overlay|§aKey : %s",
@@ -11,7 +12,11 @@
   "config.caetweeks.clearlava.description": "Removes lava overlay|§aKey : %s",
   "config.caetweeks.itemframehelper.name": "Item frame helper",
   "config.caetweeks.itemframehelper.description": "Show number of clicks required|to reset an item frame's rotation|§aKey : %s",
+  "config.caetweeks.antibreak.name": "AntiBreak",
+  "config.caetweeks.antibreak.description": "Prevents any diamond/netherite|and enchanted iron tools from|breaking||§cWarning : doesn't work on swords,|§cand doesn't work when hitting|§centities||§aKey : %s",
 
   "button.caetweeks.changekeys": "Change keys",
-  "button.caetweeks.reset": "Reset"
+  "button.caetweeks.reset": "Reset",
+
+  "message.caetweeks.brokentool": "§cThis item has %d§c durability"
 }

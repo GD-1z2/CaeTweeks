@@ -1,12 +1,13 @@
 package fr.caemur.caetweeks.config;
 
 public class ModConfig {
-    private boolean itemFrameHelperEnabled, clearWaterEnabled, clearLavaEnabled;
+    private boolean itemFrameHelperEnabled, clearWaterEnabled, clearLavaEnabled, antiBreakEnabled;
 
-    public ModConfig(boolean itemFrameHelperEnabled, boolean clearWaterEnabled, boolean clearLavaEnabled) {
+    public ModConfig(boolean itemFrameHelperEnabled, boolean clearWaterEnabled, boolean clearLavaEnabled, boolean antiBreakEnabled) {
         this.itemFrameHelperEnabled = itemFrameHelperEnabled;
         this.clearWaterEnabled = clearWaterEnabled;
         this.clearLavaEnabled = clearLavaEnabled;
+        this.antiBreakEnabled = antiBreakEnabled;
     }
 
     public boolean getFieldB(String field) {
@@ -17,6 +18,8 @@ public class ModConfig {
                 return clearWaterEnabled;
             case "clearLava":
                 return clearLavaEnabled;
+            case "antiBreak":
+                return antiBreakEnabled;
             default:
                 return false;
         }
@@ -32,6 +35,9 @@ public class ModConfig {
                 break;
             case "clearLava":
                 clearLavaEnabled = value;
+                break;
+            case "antiBreak":
+                antiBreakEnabled = value;
                 break;
         }
     }
@@ -53,6 +59,7 @@ public class ModConfig {
         clearWaterEnabled = !clearWaterEnabled;
     }
 
+
     public boolean isClearLavaEnabled() {
         return clearLavaEnabled;
     }
@@ -61,14 +68,24 @@ public class ModConfig {
         clearLavaEnabled = !clearLavaEnabled;
     }
 
+
+    public boolean isAntiBreakEnabled() {
+        return antiBreakEnabled;
+    }
+
+    public void toggleAntiBreak() {
+        antiBreakEnabled = !antiBreakEnabled;
+    }
+
     @Override
     public String toString() {
         return "clearWater=" + clearWaterEnabled +
                 ";clearLava=" + clearLavaEnabled +
-                ";itemFrameHelper=" + itemFrameHelperEnabled;
+                ";itemFrameHelper=" + itemFrameHelperEnabled +
+                ";antiBreak=" + antiBreakEnabled;
     }
 
     public static ModConfig getDefault() {
-        return new ModConfig(false, false, false);
+        return new ModConfig(false, false, false, true);
     }
 }

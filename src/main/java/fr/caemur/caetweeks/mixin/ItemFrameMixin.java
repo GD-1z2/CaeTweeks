@@ -11,7 +11,6 @@ import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -31,12 +30,8 @@ public abstract class ItemFrameMixin extends EntityRenderer<Entity> {
         }
     }
 
-    /**
-     * @author Caemur
-     * Change position of the label and allow custom texts
-     */
-    @Overwrite
-    public void renderLabelIfPresent(ItemFrameEntity itemFrameEntity, Text text, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
+    @Inject(at = @At("HEAD"), method = "renderLabelIfPresent", cancellable = true)
+    public void renderLabelIfPresent(ItemFrameEntity itemFrameEntity, Text text, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo info) {
         matrixStack.push();
 
         matrixStack.translate(0, (
@@ -49,5 +44,7 @@ public abstract class ItemFrameMixin extends EntityRenderer<Entity> {
         super.renderLabelIfPresent(itemFrameEntity, text, matrixStack, vertexConsumerProvider, i);
 
         matrixStack.pop();
+
+        info.cancel();
     }
 }
