@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "caetweeks",
-  "version": "${version}",
+  "version": "2.2",
   "name": "CaeTweeks",
   "description": "Caemur's useless tweaks",
   "authors": [
@@ -13,7 +13,7 @@
   },
   "license": "CC0-1.0",
   "icon": "assets/caetweeks/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "main": [
       "fr.caemur.caetweeks.CaeTweeks"

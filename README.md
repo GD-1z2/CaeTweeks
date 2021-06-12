@@ -4,10 +4,12 @@ Caemur's useless tweaks
 
 For fabric 1.16.5
 
+:warning: Clear water/lava are incompatible with optifine (but work well with sodium)
+
 ## Features
 - Cool config menu (press R by default)
 - Clear water/lava : makes water or lava completely transparent
-- Item frame helper : shows the numbers of click required to reset an item frame's rotation.
+- Item frame helper : shows the number of click required to reset an item frame's rotation.
 - AntiBreak : prevents from breaking diamond/netherite/enchanted iron tools
 
 I'll probably add more in the future

@@ -1,5 +1,6 @@
 package fr.caemur.caetweeks.mixin;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import fr.caemur.caetweeks.CaeTweeks;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -20,7 +21,7 @@ public class BackgroundRendererMixin {
     private static float animationProgress = 0;
     private static long animationStart = 0;
 
-    @Inject(at = @At("TAIL"), method = "applyFog")
+    @Inject(at = @At("HEAD"), method = "applyFog", cancellable = true)
     private static void applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, CallbackInfo info) throws Exception {
         FluidState fluidState = camera.getSubmergedFluidState();
         if ((CaeTweeks.getConfig().isClearWaterEnabled() && fluidState.isIn(FluidTags.WATER))
@@ -52,16 +53,17 @@ public class BackgroundRendererMixin {
                 }
 
                 RenderSystem.fogDensity(fogDensity);
-
+                RenderSystem.fogMode(GlStateManager.FogMode.EXP2);
             } else { // Lava
-                float fogEnd = -0.25f;
+                float fogEnd = (float) (Math.sqrt(Math.pow(viewDistance, 2) * 2) + 20);
 
-                if (playingAnimation) {
-                    fogEnd = (float) (animationProgress * (Math.sqrt(Math.pow(viewDistance, 2) * 2) + 20));
-                }
+                if (playingAnimation)
+                    fogEnd *= animationProgress;
 
                 RenderSystem.fogStart(0.0f);
                 RenderSystem.fogEnd(fogEnd);
+                RenderSystem.fogMode(GlStateManager.FogMode.LINEAR);
+                RenderSystem.setupNvFogDistance();
             }
 
             if (playingAnimation) {
@@ -71,6 +73,8 @@ public class BackgroundRendererMixin {
                     animationProgress = 0;
                 }
             }
+
+            info.cancel();
         }
 
         wasWaterEnabled = CaeTweeks.getConfig().isClearWaterEnabled();

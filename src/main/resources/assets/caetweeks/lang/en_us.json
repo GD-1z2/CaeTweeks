@@ -13,7 +13,7 @@
   "config.caetweeks.itemframehelper.name": "Item frame helper",
   "config.caetweeks.itemframehelper.description": "Show number of clicks required|to reset an item frame's rotation|§aKey : %s",
   "config.caetweeks.antibreak.name": "AntiBreak",
-  "config.caetweeks.antibreak.description": "Prevents any diamond/netherite|and enchanted iron tools from|breaking||§cWarning : doesn't work on swords,|§cand doesn't work when hitting|§centities||§aKey : %s",
+  "config.caetweeks.antibreak.description": "Prevents any diamond/netherite|and enchanted iron tools from|breaking|§aKey : %s",
 
   "button.caetweeks.changekeys": "Change keys",
   "button.caetweeks.reset": "Reset",

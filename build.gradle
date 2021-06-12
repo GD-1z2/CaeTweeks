@@ -7,7 +7,7 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 archivesBaseName = "caetweeks"
-version = "2.1"
+version = "2.2"
 group = "fr.caemur.caetweeks"
 
 repositories {

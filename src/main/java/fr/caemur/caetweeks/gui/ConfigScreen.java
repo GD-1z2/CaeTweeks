@@ -80,11 +80,11 @@ public class ConfigScreen extends Screen {
         ButtonWidget githubButton = new ButtonWidget(startX, buttonY,
                 githubButtonWidth, 20, Text.of("Github"), button -> {
 
-            this.client.openScreen(new ConfirmChatLinkScreen((bl) -> {
+            client.openScreen(new ConfirmChatLinkScreen((bl) -> {
                 if (bl) {
                     Util.getOperatingSystem().open(Constants.GITHUB);
                 }
-                this.client.openScreen(this);
+                client.openScreen(this);
             }, Constants.GITHUB, true));
         });
 

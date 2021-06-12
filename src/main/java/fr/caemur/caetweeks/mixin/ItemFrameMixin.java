@@ -26,12 +26,11 @@ public abstract class ItemFrameMixin extends EntityRenderer<Entity> {
         if (CaeTweeks.getConfig().isItemFrameHelperEnabled()) {
             final int rotation = itemFrameEntity.getRotation();
             final Text text = Text.of((rotation == 0 ? Formatting.GREEN : Formatting.GOLD) + String.valueOf(rotation == 0 ? 0 : 8 - rotation));
-            renderLabelIfPresent(itemFrameEntity, text, matrixStack, vertexConsumerProvider, i);
+            renderLabel(itemFrameEntity, text, matrixStack, vertexConsumerProvider, i);
         }
     }
 
-    @Inject(at = @At("HEAD"), method = "renderLabelIfPresent", cancellable = true)
-    public void renderLabelIfPresent(ItemFrameEntity itemFrameEntity, Text text, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo info) {
+    public void renderLabel(ItemFrameEntity itemFrameEntity, Text text, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
         matrixStack.push();
 
         matrixStack.translate(0, (
@@ -41,10 +40,9 @@ public abstract class ItemFrameMixin extends EntityRenderer<Entity> {
                                 ? -1
                                 : -0.2),
                 0);
+
         super.renderLabelIfPresent(itemFrameEntity, text, matrixStack, vertexConsumerProvider, i);
 
         matrixStack.pop();
-
-        info.cancel();
     }
 }
