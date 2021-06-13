@@ -7,8 +7,10 @@
   ],
   "client": [
     "BackgroundRendererMixin",
+    "ChatScreenMixin",
+    "ClientPlayerInteractionManagerMixin",
     "ItemFrameMixin",
-    "ClientPlayerInteractionManagerMixin"
+    "ChatHudAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
